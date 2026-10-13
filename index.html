@@ -34,6 +34,11 @@ section{padding:64px 0;border-top:1px solid var(--line)}
 .next{margin-top:36px;padding:22px 24px;border:1px dashed var(--line);border-radius:16px;color:var(--mut);font-size:15px}.next b{color:var(--ink)}
 .people{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
 .person{padding:18px 20px;border:1px solid var(--line);border-radius:16px}.person b{display:block;font-size:17px}.person span{font-size:13px;color:var(--mut)}
+.person{position:relative;display:flex;flex-direction:column;align-self:start;text-align:left;font:inherit;color:inherit;background:#fff;cursor:pointer;transition:border-color .2s}.person b{padding-right:26px}
+.person:hover{border-color:#C9C9C9}
+.person q{display:block;max-height:0;overflow:hidden;opacity:0;margin-top:0;font-size:14px;color:var(--ink);quotes:"“" "”";transition:max-height .3s ease,opacity .3s ease,margin-top .3s ease}
+.person[aria-expanded="true"] q{max-height:80px;opacity:1;margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
+.person:after{content:"+";position:absolute;top:14px;right:16px;font-size:18px;color:#B5B5B5;line-height:1}.person[aria-expanded="true"]:after{content:"−"}
 .person.lead{border-color:var(--ink)}
 .support{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
 .support p{margin:0;color:var(--mut);max-width:420px}
@@ -72,10 +77,10 @@ footer{padding:36px 0 48px;border-top:1px solid var(--line);font-size:13px;color
 <section id="team">
   <p class="lbl">TEAM</p>
   <div class="people">
-    <div class="person lead"><b>이성언</b><span>대표 · 개발 · 기획 · 디자인</span></div>
-    <div class="person"><b>베타 테스터 1</b><span>창단멤버 · 베타 테스트</span></div>
-    <div class="person"><b>베타 테스터 2</b><span>창단멤버 · 베타 테스트</span></div>
-    <div class="person"><b>베타 테스터 3</b><span>창단멤버 · 베타 테스트</span></div>
+    <button class="person lead" aria-expanded="false"><b>이성언</b><span>대표 · 개발 · 기획 · 디자인</span><q>우리의 주적은 서예호</q></button>
+    <button class="person" aria-expanded="false"><b>이주환</b><span>창단멤버 · 베타 테스트</span><q>할 말이 없다</q></button>
+    <button class="person" aria-expanded="false"><b>소병준</b><span>창단멤버 · 베타 테스트</span><q>말도 안 되는 퀄리티</q></button>
+    <button class="person" aria-expanded="false"><b>성찬</b><span>창단멤버 · 베타 테스트</span><q>성찬 많이 써주세요</q></button>
   </div>
 </section>
 
@@ -83,7 +88,7 @@ footer{padding:36px 0 48px;border-top:1px solid var(--line);font-size:13px;color
   <p class="lbl">SUPPORT</p>
   <div class="support">
     <p>게임은 앞으로도 무료예요. 후원해 주시면 서버와 개발 비용에 소중히 쓸게요.</p>
-    <div class="acct"><div class="sm">○○은행 · 예금주 ○○○</div><div class="no" id="no">000-0000-0000-00</div><button id="cp">계좌번호 복사</button></div>
+    <div class="acct"><div class="sm">SC제일은행</div><div class="no" id="no">326-20-125527</div><button id="cp">계좌번호 복사</button></div>
   </div>
 </section>
 
@@ -91,6 +96,7 @@ footer{padding:36px 0 48px;border-top:1px solid var(--line);font-size:13px;color
 </div>
 <div class="toast" id="t">복사했어요</div>
 <script>
-document.getElementById('cp').onclick=async()=>{const v=document.getElementById('no').textContent.replace(/[^0-9-]/g,'');try{await navigator.clipboard.writeText(v)}catch(e){const a=document.createElement('textarea');a.value=v;document.body.appendChild(a);a.select();document.execCommand('copy');a.remove()}const t=document.getElementById('t');t.classList.add('on');setTimeout(()=>t.classList.remove('on'),1500)};
+document.querySelectorAll('.person').forEach(b=>b.onclick=()=>b.setAttribute('aria-expanded',b.getAttribute('aria-expanded')==='true'?'false':'true'));
+document.getElementById('cp').onclick=async()=>{const v=document.getElementById('no').textContent.replace(/[^0-9]/g,'');try{await navigator.clipboard.writeText(v)}catch(e){const a=document.createElement('textarea');a.value=v;document.body.appendChild(a);a.select();document.execCommand('copy');a.remove()}const t=document.getElementById('t');t.classList.add('on');setTimeout(()=>t.classList.remove('on'),1500)};
 </script>
 </body></html>
