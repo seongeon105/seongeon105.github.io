@@ -48,7 +48,7 @@ section{padding:64px 0;border-top:1px solid var(--line)}
 .person q{display:block;max-height:0;overflow:hidden;opacity:0;margin-top:0;font-size:14px;color:var(--ink);quotes:"“" "”";transition:max-height .3s ease,opacity .3s ease,margin-top .3s ease}
 .person[aria-expanded="true"] q{max-height:80px;opacity:1;margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
 .person:after{content:"+";position:absolute;top:14px;right:16px;font-size:18px;color:#B5B5B5;line-height:1}.person[aria-expanded="true"]:after{content:"−"}
-.person.lead{border-color:var(--ink)}
+.person.lead{border-color:var(--ink)}.person:not(:has(q)){cursor:default}.person:not(:has(q)):after{display:none}
 .support{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
 .support p{margin:0;color:var(--mut);max-width:420px}
 .acct{text-align:right}.acct .no{font-size:22px;font-weight:800;letter-spacing:.02em}.acct .sm{font-size:13px;color:var(--mut)}
@@ -86,10 +86,11 @@ footer{padding:36px 0 48px;border-top:1px solid var(--line);font-size:13px;color
 <section id="team">
   <p class="lbl">TEAM</p>
   <div class="people">
-    <button class="person lead" aria-expanded="false"><b>이성언</b><span>대표 · 개발 · 기획 · 디자인</span><q>우리의 주적은 서예호</q></button>
-    <button class="person" aria-expanded="false"><b>이주환</b><span>창단멤버 · 베타 테스트</span><q>할 말이 없다</q></button>
-    <button class="person" aria-expanded="false"><b>소병준</b><span>창단멤버 · 베타 테스트</span><q>말도 안 되는 퀄리티</q></button>
-    <button class="person" aria-expanded="false"><b>성찬</b><span>창단멤버 · 베타 테스트</span><q>성찬 많이 써주세요</q></button>
+    <button class="person lead" aria-expanded="false"><b>이성언</b><span>총괄</span><q>우리의 주적은 서예호</q></button>
+    <button class="person" aria-expanded="false"><b>이주환</b><span>개발팀장</span><q>할 말이 없다</q></button>
+    <button class="person" aria-expanded="false"><b>소병준</b><span>개발팀</span><q>말도 안 되는 퀄리티</q></button>
+    <button class="person" aria-expanded="false"><b>이강물</b><span>개발팀</span></button>
+    <button class="person" aria-expanded="false"><b>김태영</b><span>테스트팀</span></button>
   </div>
 </section>
 
